@@ -2,7 +2,27 @@
 @section('title', 'Employees')
 @section('content')
     <div class="col-12">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="btn-group">
+                <a href="/employees/create" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Create
+                </a>
+                <button class="btn btn-secondary">
+                    <i class="bi bi-download"></i> Import
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="bi bi-upload"></i> Export
+                </button>
+            </div>
+        </div>
         <div class="card">
+
             <div class="card-header">
                 <h3 class="card-title">Employees</h3>
 
@@ -21,6 +41,7 @@
                             <th>#</th>
                             <th>NIP</th>
                             <th>Name</th>
+                            <th>Email</th>
                             <th>Position</th>
                             <th>Department</th>
                             <th>Salary</th>
@@ -33,6 +54,7 @@
                                 <td>{{ $index + 1 + ($employee->currentPage() - 1) * $employee->perPage() }}</td>
                                 <td>{{ $item->nip }}</td>
                                 <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
                                 <td>{{ $item->position }}</td>
                                 <td>{{ $item->department }}</td>
                                 <td>{{ 'Rp. ' . number_format($item->salary, 0, ',', '.') }}</td>

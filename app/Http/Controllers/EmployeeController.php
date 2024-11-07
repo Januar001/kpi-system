@@ -14,7 +14,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::paginate(10);
         return view('employees.index', compact('employee'));
-        
+
     }
 
     /**
@@ -22,7 +22,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employees.create');
     }
 
     /**
@@ -30,7 +30,29 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'nip' => 'required|unique:employees,nip',
+            'name' => 'required|string|max:255',
+            'department' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'salary' => 'required|numeric|min:0',
+            'hire_date' => 'required|date',
+        ]);
+
+        // Store the data in the database
+        Employee::create([
+            'nip' => $validatedData['nip'],
+            'name' => $validatedData['name'],
+            'department' => $validatedData['department'],
+            'position' => $validatedData['position'],
+            'email'=>$validatedData['email'],
+            'salary' => $validatedData['salary'],
+            'hire_date' => $validatedData['hire_date'],
+        ]);
+
+        // Redirect to the employees list with a success message
+        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
 
     /**
