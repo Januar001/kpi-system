@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BonusController;
+use App\Http\Controllers\SalaryController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\KpiPeriodController;
+use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\KpiCategoryController;
+use App\Http\Controllers\KpiIndicatorController;
+use App\Http\Controllers\PerformanceScoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +22,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.index');
 });
+
+Route::resource('employees', EmployeeController::class);
+Route::resource('kpi-categories', KpiCategoryController::class);
+Route::resource('kpi-indicators', KpiIndicatorController::class);
+Route::resource('evaluations', EvaluationController::class);
+Route::resource('performance-scores', PerformanceScoreController::class);
+Route::resource('bonuses', BonusController::class);
+Route::resource('salaries', SalaryController::class);
+Route::resource('kpi-periods', KpiPeriodController::class);
