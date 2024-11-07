@@ -12,7 +12,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-       return view('employees.index');
+        $employee = Employee::paginate(10);
+        return view('employees.index', compact('employee'));
+        
     }
 
     /**

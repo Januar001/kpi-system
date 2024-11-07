@@ -16,6 +16,7 @@
             <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
                     <thead>
+
                         <tr>
                             <th>#</th>
                             <th>NIP</th>
@@ -27,31 +28,24 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>6510</td>
-                            <td>Mustofah Januar</td>
-                            <td>IT</td>
-                            <td>Operasional</td>
-                            <td>Rp. 4.000.000</td>
-                            <td>10 Oktober 2020</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>6515</td>
-                            <td>Sukirman</td>
-                            <td>Account Officer</td>
-                            <td>Kredit</td>
-                            <td>Rp. 4.000.000</td>
-                            <td>10 Oktober 2019</td>
-                        </tr>
+                        @foreach ($employee as $index => $item)
+                            <tr>
+                                <td>{{ $index + 1 + ($employee->currentPage() - 1) * $employee->perPage() }}</td>
+                                <td>{{ $item->nip }}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->position }}</td>
+                                <td>{{ $item->department }}</td>
+                                <td>{{ 'Rp. ' . number_format($item->salary, 0, ',', '.') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($item->hire_date)->format('d F Y') }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
         </div>
         <div class="mt-2">
-            {{-- {{ $nasabah->links('pagination::bootstrap-5') }} --}}
+            {{ $employee->links('pagination::bootstrap-5') }}
         </div>
         <!-- /.card -->
     </div>
