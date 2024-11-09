@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Imports\EmployeeImport;
+use App\Exports\EmployeesExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeController extends Controller
 {
@@ -85,5 +88,23 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv,xlsx,xls',
+        ]);
+
+        Excel::import(new EmployeeImport, $request->file('file'));
+
+        return redirect()->route('employees.index')->with('success', 'Data berhasil diimpor.');
+    }
+
+    public function export()
+    {
+        // Menyimpan file dalam format .xlsx
+        // return Excel::download(new EmployeesExport, 'employees.xlsx');
+        return "hallo";
     }
 }

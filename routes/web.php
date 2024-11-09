@@ -26,6 +26,9 @@ Route::get('/', function () {
 });
 
 Route::resource('employees', EmployeeController::class);
+Route::post('/employees/import', [EmployeeController::class, 'import'])->name('employees.import');
+Route::get('/employees/export', [EmployeeController::class, 'export'])->name('employees.export');
+
 Route::resource('kpi-categories', KpiCategoryController::class);
 Route::resource('kpi-indicators', KpiIndicatorController::class);
 Route::resource('evaluations', EvaluationController::class);

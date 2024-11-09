@@ -13,12 +13,20 @@
                 <a href="/employees/create" class="btn btn-success">
                     <i class="bi bi-plus-circle"></i> Create
                 </a>
-                <button class="btn btn-secondary">
-                    <i class="bi bi-download"></i> Import
-                </button>
-                <button class="btn btn-secondary">
-                    <i class="bi bi-upload"></i> Export
-                </button>
+
+                <form action="{{ route('employees.import') }}" method="POST" enctype="multipart/form-data" id="importForm">
+                    @csrf
+                    <input type="file" name="file" id="fileInput" style="display: none;"
+                        onchange="document.getElementById('importForm').submit();">
+
+                    <button type="button" class="btn btn-secondary"
+                        onclick="document.getElementById('fileInput').click();">
+                        <i class="bi bi-download"></i> Import
+                    </button>
+                </form>
+                <a href="{{ route('employees.export') }}" class="btn btn-success">
+                    <i class="bi bi-upload"></i> Export Excel
+                </a>
             </div>
         </div>
         <div class="card">
@@ -71,4 +79,7 @@
         </div>
         <!-- /.card -->
     </div>
+
+
+
 @endsection
