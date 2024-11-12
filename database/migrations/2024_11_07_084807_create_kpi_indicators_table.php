@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('kpi_indicators', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kpi_category_id')->constrained('kpi_categories')->onDelete('cascade');
+            $table->string('name',255);
+            $table->integer('weight');
+            $table->text('description');
+            
             $table->timestamps();
         });
     }

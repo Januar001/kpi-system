@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Imports\EmployeeImport;
-use App\Exports\EmployeesExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class EmployeeController extends Controller
@@ -63,7 +62,8 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        // Menampilkan detail data karyawan
+        return view('employees.show', compact('employee'));
     }
 
     /**
@@ -71,7 +71,8 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        // Mengembalikan view edit dengan data karyawan
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -79,7 +80,21 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        $validatedData = $request->validate([
+            'nip' => 'required|unique:employees,nip,' . $employee->id,
+            'name' => 'required|string|max:255',
+            'department' => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'salary' => 'required|numeric|min:0',
+            'hire_date' => 'required|date',
+        ]);
+
+        // Update data karyawan di database
+        $employee->update($validatedData);
+
+        // Redirect ke halaman daftar karyawan dengan pesan sukses
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
     }
 
     /**
@@ -87,7 +102,11 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+            // Menghapus data employee yang ditemukan
+        $employee->delete();
+
+        // Redirect to the employees list with a success message
+        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
     }
 
     public function import(Request $request)
@@ -101,10 +120,4 @@ class EmployeeController extends Controller
         return redirect()->route('employees.index')->with('success', 'Data berhasil diimpor.');
     }
 
-    public function export()
-    {
-        // Menyimpan file dalam format .xlsx
-        // return Excel::download(new EmployeesExport, 'employees.xlsx');
-        return "hallo";
-    }
 }

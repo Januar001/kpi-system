@@ -13,6 +13,12 @@
                 <p>Employees</p>
             </a>
         </li>
+        <li class="nav-item"> <a href="/kpi-categories"
+                class="nav-link {{ Request::is('employees') || Request::is('employees/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-people-fill"></i>
+                <p>Employees</p>
+            </a>
+        </li>
         {{-- <li class="nav-item"> <a href="/nasabah"
                 class="nav-link {{ Request::is('nasabah') || Request::is('nasabah/*') ? 'active' : '' }}">
                 <i class="nav-icon bi bi-people-fill"></i>

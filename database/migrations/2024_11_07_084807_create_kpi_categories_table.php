@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('kpi_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name',255);
+            $table->text('description');
             $table->timestamps();
         });
     }
@@ -24,4 +26,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('kpi_categories');
     }
+
+    
 };
