@@ -12,7 +12,9 @@ class KpiIndicatorController extends Controller
      */
     public function index()
     {
-        //
+        $Indicators = KpiIndicator::with('KpiCategory')->paginate(10);
+        // return $Indicator;
+        return view('kpi-indicators.index', ['Indicators' => $Indicators]);
     }
 
     /**

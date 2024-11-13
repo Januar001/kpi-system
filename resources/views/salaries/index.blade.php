@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'KPI Categories')
+@section('title', 'Salaries')
 @section('content')
     <div class="col-12">
         @if (session('success'))
@@ -10,10 +10,10 @@
         @endif
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="btn-group">
-                <a href="/employees/create" class="btn btn-success">
+                <a href="#" class="btn btn-success">
                     <i class="bi bi-plus-circle"></i> Create
                 </a>
-                <form action="{{ route('employees.import') }}" method="POST" enctype="multipart/form-data" id="importForm">
+                <form action="#" method="POST" enctype="multipart/form-data" id="importForm">
                     @csrf
                     <input type="file" name="file" id="fileInput" style="display: none;"
                         onchange="document.getElementById('importForm').submit();">
@@ -31,7 +31,7 @@
         <div class="card">
 
             <div class="card-header">
-                <h3 class="card-title">KPI Categories</h3>
+                <h3 class="card-title">Salaries</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -46,18 +46,24 @@
 
                         <tr>
                             <th>#</th>
-                            <th>Category</th>
-                            <th>Description</th>
+                            <th>Employee</th>
+                            <th>Base Salary</th>
+                            <th>Bonus</th>
+                            <th>Total Salary</th>
+                            <th>Salary Month</th>
                             <th>Action</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Category as $index => $item)
+                        @foreach ($salary as $index => $item)
                             <tr>
-                                <td>{{ $index + 1 + ($Category->currentPage() - 1) * $Category->perPage() }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->description }}</td>
+                                <td>{{ $index + 1 + ($salary->currentPage() - 1) * $salary->perPage() }}</td>
+                                <td>{{ $item->Employee->name }}</td>
+                                <td>Rp. {{ number_format($item->base_salary, 2, ',', '.') }}</td>
+                                <td>Rp. {{ number_format($item->bonus, 2, ',', '.') }}</td>
+                                <td>Rp. {{ number_format($item->total_salary, 2, ',', '.') }}</td>
+                                <td>{{ $item->salary_month }}</td>
                                 <td><button class="btn btn-warning btn-sm">Edit</button>
                                     <button class="btn btn-danger btn-sm">Delete</button>
                                 </td>
@@ -69,7 +75,7 @@
             <!-- /.card-body -->
         </div>
         <div class="mt-2">
-            {{ $Category->links('pagination::bootstrap-5') }}
+            {{ $salary->links('pagination::bootstrap-5') }}
         </div>
         <!-- /.card -->
     </div>

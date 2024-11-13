@@ -14,9 +14,21 @@
             </a>
         </li>
         <li class="nav-item"> <a href="/kpi-categories"
-                class="nav-link {{ Request::is('employees') || Request::is('employees/*') ? 'active' : '' }}">
-                <i class="nav-icon bi bi-people-fill"></i>
-                <p>Employees</p>
+                class="nav-link {{ Request::is('kpi-categories') || Request::is('kpi-categories/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-clipboard-check"></i>
+                <p>KPI Categories</p>
+            </a>
+        </li>
+        <li class="nav-item"> <a href="/kpi-indicators"
+                class="nav-link {{ Request::is('kpi-indicators') || Request::is('kpi-indicators/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-clipboard-check"></i>
+                <p>KPI Indicators</p>
+            </a>
+        </li>
+        <li class="nav-item"> <a href="/salaries"
+                class="nav-link {{ Request::is('salaries') || Request::is('salaries/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-currency-exchange"></i>
+                <p>Salary</p>
             </a>
         </li>
         {{-- <li class="nav-item"> <a href="/nasabah"

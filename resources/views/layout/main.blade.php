@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Daily Report AO | BPRBDP</title><!--begin::Primary Meta Tags-->
+    <title>KPI System | BPRBDP</title><!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="Daily Report AO | BPRBDP">
     <meta name="author" content="ColorlibHQ">
@@ -32,12 +32,12 @@
     <div class="app-wrapper"> <!--begin::Header-->
         <nav class="app-header navbar navbar-expand bg-body"> <!--begin::Container-->
             <div class="container-fluid"> <!--begin::Start Navbar Links-->
-                <ul class="navbar-nav">
+                {{-- <ul class="navbar-nav">
                     <li class="nav-item"> <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
                             <i class="bi bi-list"></i> </a> </li>
                     <li class="nav-item d-none d-md-block"> <a href="#" class="nav-link">Home</a> </li>
                     <li class="nav-item d-none d-md-block"> <a href="#" class="nav-link">Contact</a> </li>
-                </ul> <!--end::Start Navbar Links--> <!--begin::End Navbar Links-->
+                </ul> <!--end::Start Navbar Links--> <!--begin::End Navbar Links--> --}}
                 <ul class="navbar-nav ms-auto"> <!--begin::Navbar Search-->
                     <!--begin::Messages Dropdown Menu-->
                     <li class="nav-item"> <a class="nav-link" href="#" data-lte-toggle="fullscreen"> <i
@@ -71,7 +71,7 @@
             <div class="sidebar-brand"> <!--begin::Brand Link--> <a href="./index.html" class="brand-link">
                     <!--begin::Brand Image--> <img src="{{ asset('template/dist/assets/img/AdminLTELogo.png') }}"
                         alt="AdminLTE Logo" class="brand-image opacity-75 shadow"> <!--end::Brand Image-->
-                    <!--begin::Brand Text--> <span class="brand-text fw-light">KPI SYSTEM BPRBDP</span>
+                    <!--begin::Brand Text--> <span class="brand-text fw-light">KPI SYSTEM</span>
                     <!--end::Brand Text-->
                 </a>
                 <!--end::Brand Link-->

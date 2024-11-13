@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Employee::factory(50)->create();
         \App\Models\KpiCategory::factory(20)->create();
         \App\Models\KpiIndicator::factory(20)->create();
+        \App\Models\Salary::factory(20)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

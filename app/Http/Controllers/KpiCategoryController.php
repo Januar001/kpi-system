@@ -12,7 +12,8 @@ class KpiCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $Category = KpiCategory::paginate(10);
+        return view('kpi-categories.index', ['Category' => $Category]);
     }
 
     /**
