@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'KPI Indicators')
+@section('title', 'KPI Periods')
 @section('content')
     <div class="col-12">
         @if (session('success'))
@@ -31,7 +31,7 @@
         <div class="card">
 
             <div class="card-header">
-                <h3 class="card-title">KPI Indicators</h3>
+                <h3 class="card-title">KPI Periods</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -46,47 +46,55 @@
 
                         <tr>
                             <th>#</th>
-                            <th>Category</th>
-                            <th>Indicators</th>
-                            <th>Weight (%)</th>
-                            <th>Description</th>
+                            <th>Periode</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
                             <th>Action</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Indicators as $index => $item)
+                        <tr>
+                            <td>1</td>
+                            <td>Q1</td>
+                            <td>01 Januari 2024</td>
+                            <td>31 Maret 2024</td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <!-- Tombol Edit -->
+                                    <a href="#" class="btn btn-warning btn-sm">
+                                        <i class="bi bi-pencil-square"></i> Edit
+                                    </a>
+                                    <form action="#" method="POST"
+                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus periods ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash"></i> Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        {{-- @foreach ($Indicators as $index => $item)
                             <tr>
                                 <td>{{ $index + 1 + ($Indicators->currentPage() - 1) * $Indicators->perPage() }}</td>
                                 <td>{{ $item->KpiCategory->name }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->weight }}</td>
                                 <td>{{ $item->description }}</td>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <!-- Tombol Edit -->
-                                        <a href="#" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil-square"></i> Edit
-                                        </a>
-                                        <form action="#" method="POST"
-                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus indicators ini?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
-                                        </form>
-                                    </div>
+                                <td><button class="btn btn-warning btn-sm">Edit</button>
+                                    <button class="btn btn-danger btn-sm">Delete</button>
                                 </td>
                             </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>
             </div>
             <!-- /.card-body -->
         </div>
         <div class="mt-2">
-            {{ $Indicators->links('pagination::bootstrap-5') }}
+            {{-- {{ $Indicators->links('pagination::bootstrap-5') }} --}}
         </div>
         <!-- /.card -->
     </div>

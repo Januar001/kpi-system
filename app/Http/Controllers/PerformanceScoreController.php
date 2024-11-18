@@ -12,7 +12,7 @@ class PerformanceScoreController extends Controller
      */
     public function index()
     {
-        //
+        return view('performance-scores.index');
     }
 
     /**

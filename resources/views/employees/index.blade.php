@@ -68,18 +68,20 @@
                                 <td>{{ 'Rp. ' . number_format($item->salary, 0, ',', '.') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->hire_date)->format('d F Y') }}</td>
                                 <td>
-                                    <form action="{{ route('employees.destroy', $item->id) }}" method="POST"
-                                        onsubmit="return confirm('Apakah Anda yakin ingin menghapus employee ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <!-- Tombol Edit -->
-                                    <a href="{{ route('employees.edit', $item->id) }}" class="btn btn-warning">
-                                        Edit
-                                    </a>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <!-- Tombol Edit -->
+                                        <a href="{{ route('employees.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <form action="{{ route('employees.destroy', $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus employee ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

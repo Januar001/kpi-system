@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bonus;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class BonusController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('bonuses.index');
+        $report = Employee::paginate('10');
+        // return $report;
+        return view('reports.index',['report'=>$report]);
     }
 
     /**
@@ -34,32 +36,34 @@ class BonusController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Bonus $bonus)
+    public function show($id)
     {
-        //
+        $report = Employee::find($id);
+        return view ('reports.report-detail',['report'=>$report]);
+        // return $report;
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Bonus $bonus)
-    {
-        //
-    }
+    // public function edit(Bonus $bonus)
+    // {
+    //     //
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Bonus $bonus)
-    {
-        //
-    }
+    // public function update(Request $request, Bonus $bonus)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bonus $bonus)
-    {
-        //
-    }
+    // public function destroy(Bonus $bonus)
+    // {
+    //     //
+    // }
 }

@@ -25,10 +25,47 @@
                 <p>KPI Indicators</p>
             </a>
         </li>
+        <li class="nav-item"> <a href="/kpi-periods"
+                class="nav-link {{ Request::is('kpi-periods') || Request::is('kpi-periods/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-clipboard-check"></i>
+                <i class=""></i>
+                <p>KPI Periods</p>
+            </a>
+        </li>
+        <li class="nav-item"> <a href="/evaluations"
+                class="nav-link {{ Request::is('evaluations') || Request::is('evaluations/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-clipboard-check"></i>
+                <p>Evaluations</p>
+            </a>
+        </li>
+        <li class="nav-item"> <a href="/performance-scores"
+                class="nav-link {{ Request::is('performance-scores') || Request::is('performance-scores/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-clipboard-check"></i>
+                <p>Performance Score</p>
+            </a>
+        </li>
+        <li class="nav-item"> <a href="/bonuses"
+                class="nav-link {{ Request::is('bonuses') || Request::is('bonuses/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-currency-exchange"></i>
+                <p>Bonuses</p>
+            </a>
+        </li>
         <li class="nav-item"> <a href="/salaries"
                 class="nav-link {{ Request::is('salaries') || Request::is('salaries/*') ? 'active' : '' }}">
                 <i class="nav-icon bi bi-currency-exchange"></i>
-                <p>Salary</p>
+                <p>Salaries</p>
+            </a>
+        </li>
+        <li class="nav-item"> <a href="/reports"
+                class="nav-link {{ Request::is('reports') || Request::is('reports/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-journal-text"></i>
+                <p>Report</p>
+            </a>
+        </li>
+        <li class="nav-item"> <a href="/settings"
+                class="nav-link {{ Request::is('settings') || Request::is('settings/*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-gear"></i>
+                <p>Settings</p>
             </a>
         </li>
         {{-- <li class="nav-item"> <a href="/nasabah"

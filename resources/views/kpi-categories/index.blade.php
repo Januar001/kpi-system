@@ -58,8 +58,21 @@
                                 <td>{{ $index + 1 + ($Category->currentPage() - 1) * $Category->perPage() }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->description }}</td>
-                                <td><button class="btn btn-warning btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                <td>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <!-- Tombol Edit -->
+                                        <a href="#" class="btn btn-warning btn-sm">
+                                            <i class="bi bi-pencil-square"></i> Edit
+                                        </a>
+                                        <form action="#" method="POST"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus category ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

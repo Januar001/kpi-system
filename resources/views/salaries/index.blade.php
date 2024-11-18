@@ -8,30 +8,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div class="btn-group">
-                <a href="#" class="btn btn-success">
-                    <i class="bi bi-plus-circle"></i> Create
-                </a>
-                <form action="#" method="POST" enctype="multipart/form-data" id="importForm">
-                    @csrf
-                    <input type="file" name="file" id="fileInput" style="display: none;"
-                        onchange="document.getElementById('importForm').submit();">
-
-                    <button type="button" class="btn btn-secondary"
-                        onclick="document.getElementById('fileInput').click();">
-                        <i class="bi bi-download"></i> Import
-                    </button>
-                </form>
-                {{-- <a href="#" class="btn btn-success">
-                    <i class="bi bi-upload"></i> Export Excel
-                </a> --}}
-            </div>
+        <div class="d-flex justify-content-start align-items-center gap-2 mb-3">
+            <a href="#" class="btn btn-success">
+                <i class="bi bi-upload"></i> Export Excel
+            </a>
+            <a href="#" class="btn btn-success">
+                <i class="bi bi-printer"></i> Cetak Slip
+            </a>
         </div>
         <div class="card">
 
             <div class="card-header">
-                <h3 class="card-title">Salaries</h3>
+                <h3 class="card-title">Salaries this month</h3>
 
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -64,8 +52,7 @@
                                 <td>Rp. {{ number_format($item->bonus, 2, ',', '.') }}</td>
                                 <td>Rp. {{ number_format($item->total_salary, 2, ',', '.') }}</td>
                                 <td>{{ $item->salary_month }}</td>
-                                <td><button class="btn btn-warning btn-sm">Edit</button>
-                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                <td><button class="btn btn-success btn-sm"><i class="bi bi-printer"></i> Cetak slip</button>
                                 </td>
                             </tr>
                         @endforeach

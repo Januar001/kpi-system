@@ -12,7 +12,7 @@ class KpiPeriodController extends Controller
      */
     public function index()
     {
-        //
+        return view('kpi-periods.index');
     }
 
     /**

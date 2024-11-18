@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BonusController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SalaryController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\KpiPeriodController;
@@ -30,8 +31,15 @@ Route::post('/employees/import', [EmployeeController::class, 'import'])->name('e
 Route::resource('kpi-categories', KpiCategoryController::class);
 
 Route::resource('kpi-indicators', KpiIndicatorController::class);
+
 Route::resource('evaluations', EvaluationController::class);
+
 Route::resource('performance-scores', PerformanceScoreController::class);
+
 Route::resource('bonuses', BonusController::class);
+
 Route::resource('salaries', SalaryController::class);
+
 Route::resource('kpi-periods', KpiPeriodController::class);
+
+Route::resource('reports', ReportController::class);
