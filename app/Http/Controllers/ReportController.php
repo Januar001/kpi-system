@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\KpiCategory;
 use Illuminate\Http\Request;
+
 
 class ReportController extends Controller
 {
@@ -39,8 +41,9 @@ class ReportController extends Controller
     public function show($id)
     {
         $report = Employee::find($id);
-        return view ('reports.report-detail',['report'=>$report]);
-        // return $report;
+        $category = KpiCategory::with('kpiIndicator')->get();
+        return view ('reports.report-detail',['report'=>$report,'category'=>$category]);
+        // return $category;
     }
 
     /**

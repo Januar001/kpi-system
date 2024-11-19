@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KpiCategory;
 use App\Models\KpiIndicator;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class KpiIndicatorController extends Controller
      */
     public function create()
     {
-        //
+        $category = KpiCategory::get();
+        return view('kpi-indicators.create',['category'=>$category]);
     }
 
     /**
@@ -30,7 +32,21 @@ class KpiIndicatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'category' => 'required',
+            'indicators'=> 'required|string',
+            'weight'=>'required|numeric|max:100',
+            'description'=> 'required|string',
+        ]);
+
+        KpiIndicator::create([
+            'kpi_category_id' => $validatedData['category'],
+            'name'=> $validatedData['indicators'],
+            'weight'=> $validatedData['weight'],
+            'description'=> $validatedData['description'],
+        ]);
+        return redirect()->route('kpi-indicators.create')->with('success', 'Indicators created successfully.');
+        // return $request;
     }
 
     /**
@@ -46,7 +62,18 @@ class KpiIndicatorController extends Controller
      */
     public function edit(KpiIndicator $kpiIndicator)
     {
-        //
+        // Load the related category data for the indicator
+        $kpiIndicator->load('kpiCategory');
+
+        $category=KpiCategory::get();
+
+        // Return the view with the specific indicator
+        return view('kpi-indicators.edit', [
+            'indicator' => $kpiIndicator,
+            'category'=> $category
+        ]);
+
+        // return $kpiIndicator;
     }
 
     /**
@@ -54,7 +81,20 @@ class KpiIndicatorController extends Controller
      */
     public function update(Request $request, KpiIndicator $kpiIndicator)
     {
-        //
+        $validatedData = $request->validate([
+            'category' => 'required',
+            'indicators'=> 'required|string',
+            'weight'=>'required|numeric|max:100',
+            'description'=> 'required|string',
+        ]);
+
+        $kpiIndicator->update([
+            'kpi_category_id' => $validatedData['category'],
+            'name'=> $validatedData['indicators'],
+            'weight'=> $validatedData['weight'],
+            'description'=> $validatedData['description'],
+        ]);
+        return redirect()->route('kpi-indicators.index')->with('success', 'KPI Indicators updated successfully.');
     }
 
     /**
@@ -62,6 +102,9 @@ class KpiIndicatorController extends Controller
      */
     public function destroy(KpiIndicator $kpiIndicator)
     {
-        //
+        $kpiIndicator->delete();
+
+        // Redirect to the employees list with a success message
+        return redirect()->route('kpi-indicators.index')->with('success', 'Indicator deleted successfully.');
     }
 }

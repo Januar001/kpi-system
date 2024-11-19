@@ -72,7 +72,7 @@ class EmployeeController extends Controller
     public function edit(Employee $employee)
     {
         // Mengembalikan view edit dengan data karyawan
-        return view('employees.edit', compact('employee'));
+        return view('employees.edit', ['employee' => $employee]);
     }
 
     /**

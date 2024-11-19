@@ -47,7 +47,6 @@
                         <tr>
                             <th>#</th>
                             <th>Employee</th>
-                            <th>Indicator</th>
                             <th>Evaluation Score</th>
                             <th>Evaluation Date</th>
                             <th>Action</th>
@@ -58,7 +57,6 @@
                         <tr>
                             <td>1</td>
                             <td>Munarman</td>
-                            <td>Kerapihan</td>
                             <td>78</td>
                             <td>25 Maret 2024</td>
                             <td><button class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Edit</button>

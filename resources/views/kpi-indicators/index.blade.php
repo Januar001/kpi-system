@@ -10,19 +10,9 @@
         @endif
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="btn-group">
-                <a href="#" class="btn btn-success">
+                <a href="/kpi-indicators/create" class="btn btn-success">
                     <i class="bi bi-plus-circle"></i> Create
                 </a>
-                <form action="#" method="POST" enctype="multipart/form-data" id="importForm">
-                    @csrf
-                    <input type="file" name="file" id="fileInput" style="display: none;"
-                        onchange="document.getElementById('importForm').submit();">
-
-                    <button type="button" class="btn btn-secondary"
-                        onclick="document.getElementById('fileInput').click();">
-                        <i class="bi bi-download"></i> Import
-                    </button>
-                </form>
                 {{-- <a href="#" class="btn btn-success">
                     <i class="bi bi-upload"></i> Export Excel
                 </a> --}}
@@ -65,11 +55,12 @@
                                 <td>
                                     <div class="d-flex align-items-center gap-2">
                                         <!-- Tombol Edit -->
-                                        <a href="#" class="btn btn-warning btn-sm">
+                                        <a href="{{ route('kpi-indicators.edit', $item->id) }}"
+                                            class="btn btn-warning btn-sm">
                                             <i class="bi bi-pencil-square"></i> Edit
                                         </a>
-                                        <form action="#" method="POST"
-                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus indicators ini?');">
+                                        <form action="{{ route('kpi-indicators.destroy', $item->id) }}" method="POST"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus indicator ini?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">
