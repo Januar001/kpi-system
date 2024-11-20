@@ -12,7 +12,9 @@ class KpiPeriodController extends Controller
      */
     public function index()
     {
-        return view('kpi-periods.index');
+        $period = KpiPeriod::paginate(10);
+        // return $period;
+        return view('kpi-periods.index',['period'=>$period]);
     }
 
     /**
@@ -20,7 +22,7 @@ class KpiPeriodController extends Controller
      */
     public function create()
     {
-        //
+        return view ('kpi-periods.create');
     }
 
     /**
@@ -28,7 +30,20 @@ class KpiPeriodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'periods' => 'required|string|unique:kpi_periods,name',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+        
+        KpiPeriod::create([
+            'name' => $validatedData['periods'],
+            'start_date' => $validatedData['start_date'],
+            'end_date' => $validatedData['end_date'],
+        ]);
+
+        return redirect()->route('kpi-periods.index')->with('success', 'KPI Periods created successfully.');
+        
     }
 
     /**
@@ -44,7 +59,7 @@ class KpiPeriodController extends Controller
      */
     public function edit(KpiPeriod $kpiPeriod)
     {
-        //
+        return view('kpi-periods.edit',['periods'=>$kpiPeriod]);
     }
 
     /**
@@ -52,7 +67,19 @@ class KpiPeriodController extends Controller
      */
     public function update(Request $request, KpiPeriod $kpiPeriod)
     {
-        //
+        $validatedData = $request->validate([
+            'periods' => 'required|string|unique:kpi_periods,name,'. $kpiPeriod->id,
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+        ]);
+        
+        $kpiPeriod->update([
+            'name' => $validatedData['periods'],
+            'start_date' => $validatedData['start_date'],
+            'end_date' => $validatedData['end_date'],
+        ]);
+
+        return redirect()->route('kpi-periods.index')->with('success', 'KPI Periods updated successfully.');
     }
 
     /**
@@ -60,6 +87,9 @@ class KpiPeriodController extends Controller
      */
     public function destroy(KpiPeriod $kpiPeriod)
     {
-        //
+        $kpiPeriod->delete();
+
+            return redirect()->route('kpi-periods.index')
+                ->with('success', 'Period deleted successfully.');
     }
 }

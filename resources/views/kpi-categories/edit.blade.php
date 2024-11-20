@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'KPI Categories / Create')
+@section('title', 'KPI Categories / Edit')
 @section('content')
     <div class="col-md-8">
         @if (session('success'))
@@ -35,7 +35,7 @@
                     </div>
                 </div> <!--end::Body--> <!--begin::Footer-->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                     <button type="button" class="btn btn-secondary"
                         onclick="window.location.href = '{{ route('kpi-categories.index') }}'">Back</button>
                 </div>

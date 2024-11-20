@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'KPI Indicators / Create')
+@section('title', 'KPI Indicators / Edit')
 @section('content')
     <div class="col-md-8">
         @if (session('success'))
@@ -10,7 +10,7 @@
         @endif
         <div class="card card-primary card-outline mb-4"> <!--begin::Header-->
             <div class="card-header">
-                <div class="card-title">Create KPI Indicators</div>
+                <div class="card-title">Edit KPI Indicators</div>
             </div> <!--end::Header--> <!--begin::Form-->
             <form action="{{ route('kpi-indicators.update', $indicator->id) }}" method="POST">
                 @csrf

@@ -21,4 +21,9 @@ class KpiIndicator extends Model
     {
         return $this->belongsTo(KpiCategory::class);
     }
+
+    public function evaluation()
+    {
+        return $this->hasMany(Evaluation::class);
+    }
 }
