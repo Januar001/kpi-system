@@ -1,8 +1,11 @@
 @extends('layout.main')
 @section('title', 'Evaluation / Create')
 @section('content')
+    @push('custom-style')
+        @livewireStyles()
+    @endpush
     <div class="col-12">
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul>
                     @foreach ($errors->all() as $error)
@@ -11,8 +14,8 @@
                 </ul>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        @endif
-        <div class="card">
+        @endif --}}
+        {{-- <div class="card">
             <div class="card-header d-flex justify-content-center">
                 <h2 class="card-title text-center"><strong>Employee KPI Evaluation</strong>
                 </h2>
@@ -98,40 +101,16 @@
                 </form>
             </div>
             <!-- /.card-body -->
-        </div>
-        <div class="mt-2">
-            {{-- {{ $Indicators->links('pagination::bootstrap-5') }} --}}
-        </div>
+        </div> --}}
+        {{-- <div class="mt-2"> --}}
+        {{-- {{ $Indicators->links('pagination::bootstrap-5') }} --}}
+        {{-- </div> --}}
         <!-- /.card -->
+        @livewire('evaluation-create')
     </div>
 
 @endsection
 
 @push('custom-script')
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        const ctx = document.getElementById('reportChart');
-
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['0', 'Q1-2024', 'Q2-2024', 'Q3-2024', 'Q4-2024'],
-                datasets: [{
-                    label: '#Point',
-                    data: [0, 50, 68, 75, 89],
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
+    @livewireScripts()
 @endpush
