@@ -12,11 +12,12 @@ class KpiCategory extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
 
     public function kpiIndicator()
     {
         return $this->hasMany(KpiIndicator::class);
     }
+
 }

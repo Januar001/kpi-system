@@ -42,6 +42,35 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select @error('status') is-invalid @enderror" id="status" name="status">
+                            <!-- Opsi yang dapat dipilih -->
+                            @if ($periods->status === 'active')
+                                <!-- Opsi Active -->
+                                <option value="active" {{ $periods->status === 'active' ? 'selected disabled' : '' }}>
+                                    Active
+                                </option>
+                                <option value="nonactive" {{ old('status') == 'nonactive' ? 'selected' : '' }}>
+                                    Non-Active
+                                </option>
+                            @elseif ($periods->status === 'nonactive')
+                                <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
+                                    Active
+                                </option>
+                                <!-- Opsi Non-Active -->
+                                <option value="nonactive"
+                                    {{ $periods->status === 'nonactive' ? 'selected disabled' : '' }}>
+                                    Non-Active
+                                </option>
+                            @endif
+                        </select>
+                        @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
                 </div> <!--end::Body--> <!--begin::Footer-->
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Update</button>

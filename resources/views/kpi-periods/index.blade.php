@@ -34,6 +34,7 @@
                             <th>Periode</th>
                             <th>Start Date</th>
                             <th>End Date</th>
+                            <th>Status</th>
                             <th>Action</th>
 
                         </tr>
@@ -45,6 +46,13 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->start_date)->translatedFormat('d F Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($item->end_date)->translatedFormat('d F Y') }}</td>
+                                <td>
+                                    @if ($item->status == 'active')
+                                        <span class="badge bg-success">ACTIVE</span>
+                                    @else
+                                        <span class="badge bg-danger">NON-ACTIVE</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="d-flex align-items-center gap-2">
                                         <!-- Tombol Edit -->

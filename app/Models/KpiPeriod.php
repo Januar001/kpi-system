@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Evaluation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class KpiPeriod extends Model
 {
@@ -11,6 +12,7 @@ class KpiPeriod extends Model
 
     protected $fillable = [
         'name',
+        'status',
         'start_date',
         'end_date',
     ];
