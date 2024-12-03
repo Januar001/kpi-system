@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 
 class EvaluationCreate extends Component
 {
-    public $selectedEmployee;
+    public $selectedEmployee= "";
     public $selectedPeriod;
     public $categories = [];
     public $employees = [];
@@ -24,30 +24,6 @@ class EvaluationCreate extends Component
         $this->employees = Employee::all();
         $this->periods = KpiPeriod::all();
         $this->categories = KpiCategory::with('kpiIndicator')->get();
-    }
-
-    public function updatedIndicatorValues($value, $name)
-    {
-        // Menyimpan nilai indikator ke database
-        \DB::table('employee_kpi_evaluations')->updateOrInsert(
-            [
-                'employee_id' => $this->selectedEmployee,
-                'period_id' => $this->selectedPeriod,
-                'indicator_id' => $this->getIndicatorIdFromName($name),
-            ],
-            [
-                'value' => $value,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]
-        );
-    }
-
-    private function getIndicatorIdFromName($name)
-    {
-        // Ekstrak `indicator_id` dari nama input
-        preg_match('/indicators\[(\d+)\]/', $name, $matches);
-        return $matches[1] ?? null;
     }
 
     public function render()
