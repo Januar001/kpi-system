@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\KpiPeriod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class KpiPeriodController extends Controller
 {
@@ -30,17 +31,26 @@ class KpiPeriodController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'periods' => 'required|string|unique:kpi_periods,name',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
-        ]);
-        
-        KpiPeriod::create([
-            'name' => $validatedData['periods'],
-            'start_date' => $validatedData['start_date'],
-            'end_date' => $validatedData['end_date'],
-        ]);
+        // Validasi data input
+    $validatedData = $request->validate([
+        'periods' => 'required|string|unique:kpi_periods,name',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+        'status' => 'required'
+    ]);
+
+    // Jika status yang diinput adalah "active", ubah semua yang berstatus "active" menjadi "nonactive"
+    if ($validatedData['status'] === 'active') {
+        KpiPeriod::where('status', 'active')->update(['status' => 'nonactive']);
+    }
+
+    // Simpan data baru
+    KpiPeriod::create([
+        'name' => $validatedData['periods'],
+        'start_date' => $validatedData['start_date'],
+        'end_date' => $validatedData['end_date'],
+        'status' => $validatedData['status'],
+    ]);
 
         return redirect()->route('kpi-periods.index')->with('success', 'KPI Periods created successfully.');
         
@@ -60,6 +70,7 @@ class KpiPeriodController extends Controller
     public function edit(KpiPeriod $kpiPeriod)
     {
         return view('kpi-periods.edit',['periods'=>$kpiPeriod]);
+        // return $kpiPeriod;
     }
 
     /**
@@ -68,15 +79,23 @@ class KpiPeriodController extends Controller
     public function update(Request $request, KpiPeriod $kpiPeriod)
     {
         $validatedData = $request->validate([
-            'periods' => 'required|string|unique:kpi_periods,name,'. $kpiPeriod->id,
+            'periods' => 'required|string|unique:kpi_periods,name,' . $kpiPeriod->id,
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
+            'status' => 'required'
         ]);
         
+        // Jika status yang diinput adalah "active", ubah semua yang berstatus "active" menjadi "nonactive"
+        if ($validatedData['status'] === 'active') {
+            DB::table('kpi_periods')->where('status', 'active')->update(['status' => 'nonactive']);
+        }
+        
+        // Update data periode yang sedang diubah
         $kpiPeriod->update([
             'name' => $validatedData['periods'],
             'start_date' => $validatedData['start_date'],
             'end_date' => $validatedData['end_date'],
+            'status' => $validatedData['status'],
         ]);
 
         return redirect()->route('kpi-periods.index')->with('success', 'KPI Periods updated successfully.');

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kpi_periods', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255); // Nama karyawan
+            $table->enum('status', ['active', 'nonactive']);
             $table->date('start_date'); // start date
             $table->date('end_date'); //end date
             $table->timestamps();

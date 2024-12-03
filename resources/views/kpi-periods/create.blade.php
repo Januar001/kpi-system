@@ -41,6 +41,17 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status</label>
+                        <select class="form-select @error('status') is-invalid @enderror" id="status" name="status">
+                            <option value="">Select an Status</option>
+                            <option value="active">Active</option>
+                            <option value="nonactive">Nonactive</option>
+                        </select>
+                        @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div> <!--end::Body--> <!--begin::Footer-->
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
